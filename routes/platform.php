@@ -12,6 +12,7 @@ use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\Portals\CategoriesListScreen;
 use App\Orchid\Screens\Portals\PortalsListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
@@ -32,8 +33,12 @@ use Tabuna\Breadcrumbs\Trail;
 |
 */
 
+// Порталы
 Route::screen('/portals', PortalsListScreen::class)
     ->name('platform.portals.list');
+
+Route::screen('/categories', CategoriesListScreen::class)
+    ->name('platform.portals.categories');
 
 // Main
 Route::screen('/main', PlatformScreen::class)

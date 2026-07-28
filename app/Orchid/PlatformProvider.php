@@ -35,10 +35,14 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
 
-            Menu::make('Порталы')
-                ->icon('bs.book')
-                ->title('Navigation')
+            Menu::make('Ссылки')
+                ->icon('bs.link')
+                ->title('Порталы')
                 ->route('platform.portals.list'),
+
+            Menu::make('Категории')
+                ->icon('bs.list-task')
+                ->route('platform.portals.categories'),
 
             Menu::make('Get Started')
                 ->icon('bs.book')
