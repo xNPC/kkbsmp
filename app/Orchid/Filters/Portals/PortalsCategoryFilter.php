@@ -41,7 +41,10 @@ class PortalsCategoryFilter extends Filter
      */
     public function run(Builder $builder): Builder
     {
-        return $builder->where('portals_category_id', $this->request->get('portals_category_id'));
+        return
+            $builder->whereHas('category', function (Builder $query) {
+                $query->where('title', $this->request->get('portals_category_id'));
+            });
     }
 
     /**
@@ -53,7 +56,7 @@ class PortalsCategoryFilter extends Filter
     {
         return [
             Relation::make('portals_category_id')
-                ->fromModel(PortalsCategory::class, 'title')
+                ->fromModel(PortalsCategory::class, 'title', 'title')
                 ->title('Выберите категорию')
         ];
     }

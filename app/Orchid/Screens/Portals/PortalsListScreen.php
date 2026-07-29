@@ -11,6 +11,7 @@ use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Relation;
+use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Screen;
@@ -30,6 +31,7 @@ class PortalsListScreen extends Screen
             'links' => PortalsLink::query()
                 ->with('category')
                 ->filters([PortalsCategoryFilter::class])
+                //->filters()
                 ->paginate(),
         ];
     }
@@ -67,6 +69,10 @@ class PortalsListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            Layout::selection([
+                PortalsCategoryFilter::class,
+            ]),
+
             Layout::modal('addOrEditLinkModal', [
                 Layout::rows([
                     Input::make('link.id')
@@ -100,7 +106,7 @@ class PortalsListScreen extends Screen
                 TD::make('title', 'Название'),
                 TD::make('url', 'Ссылка'),
                 TD::make('category.title', 'Категория')
-                    ->filter(Relation::make()->fromModel(PortalsCategory::class, 'title'))
+                    //->filter(Select::make()->fromModel(PortalsCategory::class, 'title', 'title'))
                     ->render(function (PortalsLink $link) {
                         return $link->category->title ?? html()
                             ->span('Без категории')
