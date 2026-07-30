@@ -108,9 +108,7 @@ class PortalsListScreen extends Screen
                 TD::make('category.title', 'Категория')
                     //->filter(Select::make()->fromModel(PortalsCategory::class, 'title', 'title'))
                     ->render(function (PortalsLink $link) {
-                        return $link->category->title ?? html()
-                            ->span('Без категории')
-                            ->class('text-muted');
+                        return $link->category->title ?? '<span class="text-muted">Без категории</span>';
                     }),
                 TD::make('Действия')
                    ->render(function(PortalsLink $link) {

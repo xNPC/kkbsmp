@@ -11,6 +11,14 @@
             </flux:sidebar.header>
 
             <flux:sidebar.nav>
+                <!--<flux:sidebar.group :heading="__('Home')" class="grid">-->
+                    <flux:sidebar.item icon="star" :href="route('home')" :current="request()->routeIs('dashboard')" wire:navigate>
+                        {{ __('Home') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="lock-closed" :href="route('platform.main')" :current="request()->routeIs('dashboard')" wire:navigate>
+                        {{ __('Админка') }}
+                    </flux:sidebar.item>
+                <!--</flux:sidebar.group>-->
                 <flux:sidebar.group :heading="__('Platform')" class="grid">
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
