@@ -53,12 +53,14 @@
                         class="list-none flex items-center justify-between cursor-pointer select-none focus:outline-none group"
                     >
                         <div class="flex items-center gap-2">
-                            <flux:icon name="folder" class="size-5 text-zinc-400" />
-                            <h2 class="text-lg font-semibold text-zinc-800 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300">
+                            <flux:icon.folder variant="solid" class="size-5 text-amber-500 dark:text-amber-300" />
+                                <flux:heading level="2" size="lg">
+{{--                            <h2 class="text-lg font-semibold text-zinc-800 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300">--}}
                                 {{ $category->title }}
                                 <!-- Компактный счетчик количества ссылок -->
                                 <span class="ml-1.5 text-sm font-normal text-zinc-400">({{ $category->links->count() }})</span>
-                            </h2>
+                                </flux:heading>
+{{--                            </h2>--}}
                         </div>
 
                         <svg
@@ -88,7 +90,7 @@
                                     >
                                         {{ $link->title }}
                                         <!-- Увеличили иконку стрелочки до размера size-3.5, чтобы она соответствовала новому шрифту -->
-                                        <flux:icon name="arrow-up-right" class="size-3.5 text-zinc-400 group-hover:text-primary-500" />
+                                        <flux:icon.arrow-top-right-on-square class="ms-1 size-3.5 text-green-800 dark:text-green-500 group-hover:text-primary-500" />
                                     </a>
 
                                 @empty
