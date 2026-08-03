@@ -17,44 +17,63 @@
 <body class="min-h-full bg-zinc-50 font-sans text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 transition-colors duration-200">
 
 <!-- Верхняя навигационная панель (Шапка) -->
-<header class="sticky top-0 z-40 w-full border-b border-zinc-200 bg-white/80 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/80">
-    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <flux:header container class="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 flex items-center">
         <!-- Логотип -->
-        <flux:brand href="/" logo="https://fluxui.dev" name="Мой Проект" class="max-lg:hidden" />
+        <flux:brand href="/" logo="logo.png" name="{{config('app.name', 'Laravel')}}" class="max-lg:hidden" />
 
         <!-- Основная навигация -->
         <flux:navbar class="max-lg:hidden">
-            <flux:navbar.item href="/" current wire:navigate>Главная</flux:navbar.item>
-            <flux:navbar.item href="/about" wire:navigate>О нас</flux:navbar.item>
-            <flux:navbar.item href="/contacts" wire:navigate>Контакты</flux:navbar.item>
+            <flux:navbar.item href="{{route('home')}}" wire:navigate>Главная</flux:navbar.item>
+            <flux:navbar.item href="{{route('portals')}}" wire:navigate>Порталы</flux:navbar.item>
+            <flux:navbar.item href="{{route('contacts')}}" wire:navigate>Контакты</flux:navbar.item>
         </flux:navbar>
 
+        <flux:spacer />
+
         <!-- Правая часть (Переключатель темы / Профиль) -->
-        <div class="flex items-center gap-4">
-            {{--<flux:darkmodeToggle />--}}
-            <flux:dropdown position="top" align="end">
-                <flux:avatar src="https://fluxui.dev" initials="ИО" class="cursor-pointer" />
-                <flux:menu>
+        {{--<flux:darkmodeToggle />--}}
+        <flux:dropdown position="top" align="end">
+            <flux:profile src="https://ui-avatars.com/api/?name=KKBSMP" class="cursor-pointer" />
+            <flux:menu>
+                <flux:menu.radio.group>
+                    <div class="p-0 text-sm font-normal">
+                        <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                            <flux:avatar src="https://ui-avatars.com/api/?name=KKBSMP" size="sm" class="shrink-0" />
+                            <div class="grid flex-1 text-left text-sm leading-tight">
+                                <span class="truncate font-semibold">Токмаков Андрей Сергеевич</span>
+                                <span class="truncate text-xs">my@mail.ru</span>
+                            </div>
+                        </div>
+                    </div>
+                </flux:menu.radio.group>
+
+                <flux:menu.separator />
+
+                <flux:menu.radio.group>
                     <flux:menu.item icon="user">Профиль</flux:menu.item>
-                    <flux:menu.item icon="arrow-right-start-on-rectangle" variant="danger">Выйти</flux:menu.item>
-                </flux:menu>
-            </flux:dropdown>
-        </div>
-    </div>
-</header>
+                </flux:menu.radio.group>
+
+                <flux:menu.separator />
+
+                <flux:menu.item icon="arrow-right-start-on-rectangle" variant="danger">Выйти</flux:menu.item>
+            </flux:menu>
+        </flux:dropdown>
+    </flux:header>
 
 <!-- Основной контейнер для контента страниц -->
-<flux:main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-    <!-- Сюда Livewire будет автоматически вставлять верстку ваших страниц -->
-    {{ $slot }}
+<flux:main>
+    <flux:container>
+        <!-- Сюда Livewire будет автоматически вставлять верстку ваших страниц -->
+        {{ $slot }}
+    </flux:container>
 </flux:main>
 
 <!-- Футер сайта -->
-<footer class="mt-auto border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
+<flux:footer container>
+    <div class="text-sm text-zinc-500">
         &copy; {{ date('Y') }} Мой Проект. Все права защищены.
     </div>
-</footer>
+</flux:footer>
 
 <!-- Обязательные JavaScript скрипты Flux -->
 @fluxScripts
