@@ -31,8 +31,10 @@
         <flux:spacer />
 
         <!-- Правая часть (Переключатель темы / Профиль) -->
-        {{--<flux:darkmodeToggle />--}}
-        <flux:button x-data x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" />
+        <flux:radio.group x-data variant="segmented" x-model="$flux.appearance">
+            <flux:radio value="light" icon="sun" x-show="$flux.appearance === 'dark'" />
+            <flux:radio value="dark" icon="moon" x-show="$flux.appearance === 'light'" />
+        </flux:radio.group>
         <flux:dropdown position="top" align="end">
             <flux:profile src="https://ui-avatars.com/api/?name=KKBSMP" class="cursor-pointer" />
             <flux:menu>
