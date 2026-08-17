@@ -28,7 +28,7 @@
         }
     </style>
 
-    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
+    <div class="flex flex-col gap-4 mb-6">
         <flux:heading level="1" size="xl">Порталы</flux:heading>
 
         <!-- Сделаем поиск чуть шире для удобства на мобильных (w-full), но ограничим на десктопе (md:max-w-xs) -->
@@ -37,11 +37,11 @@
             placeholder="Поиск по ссылкам..."
             clearable=true
             icon="magnifying-glass"
-            class="w-full md:max-w-xs"
+            class="w-full"
         />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+    <div class="grid grid-cols-1 gap-6 items-start">
         @foreach($categories as $category)
             <div
                 wire:key="cat-card-{{ $category->id }}"

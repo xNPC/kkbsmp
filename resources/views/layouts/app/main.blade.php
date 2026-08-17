@@ -17,24 +17,24 @@
 <body class="min-h-full bg-zinc-50 font-sans text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 transition-colors duration-200">
 
 <!-- Верхняя навигационная панель (Шапка) -->
-    <flux:header container class="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 flex items-center">
+    <flux:header container class="border-b border-zinc-200 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 flex items-center">
         <!-- Логотип -->
         <flux:brand href="/" logo="logo.png" name="{{config('app.name', 'Laravel')}}" class="max-lg:hidden" />
 
         <!-- Основная навигация -->
         <flux:navbar class="max-lg:hidden">
-            <flux:navbar.item href="{{route('home')}}" wire:navigate>Главная</flux:navbar.item>
-            <flux:navbar.item href="{{route('portals')}}" wire:navigate>Порталы</flux:navbar.item>
-            <flux:navbar.item href="{{route('contacts')}}" wire:navigate>Контакты</flux:navbar.item>
+            <flux:navbar.item href="{{route('home')}}" icon="home" wire:navigate>Главная</flux:navbar.item>
+            <flux:navbar.item href="{{route('portals')}}" icon="globe-alt" wire:navigate>Порталы</flux:navbar.item>
+            <flux:navbar.item href="{{route('contacts')}}" icon="phone" wire:navigate>Контакты</flux:navbar.item>
         </flux:navbar>
 
         <flux:spacer />
 
         <!-- Правая часть (Переключатель темы / Профиль) -->
-        <flux:radio.group x-data variant="segmented" x-model="$flux.appearance">
-            <flux:radio value="light" icon="sun" x-show="$flux.appearance === 'dark'" />
-            <flux:radio value="dark" icon="moon" x-show="$flux.appearance === 'light'" />
-        </flux:radio.group>
+        <flux:button x-data x-on:click="$flux.dark = ! $flux.dark">
+            <flux:icon.sun x-show="$flux.appearance === 'dark'" variant="mini" class="text-zinc-500 dark:text-white" />
+            <flux:icon.moon x-show="$flux.appearance === 'light'" variant="mini" class="text-zinc-500 dark:text-white" />
+        </flux:button>
         <flux:dropdown position="top" align="end">
             <flux:profile src="https://ui-avatars.com/api/?name=KKBSMP" class="cursor-pointer" />
             <flux:menu>
